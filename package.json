@@ -1,7 +1,7 @@
 {
-  "name": "quill-emoji",
-  "version": "0.1.7",
-  "description": "Quill Extension for Emoji Selection",
+  "name": "react-quill-emoji",
+  "version": "0.1.9",
+  "description": "React Quill Extension for Emoji Selection",
   "main": "dist/quill-emoji.js",
   "devDependencies": {
     "@babel/core": "^7.2.2",
