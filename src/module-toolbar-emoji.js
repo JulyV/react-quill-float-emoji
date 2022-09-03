@@ -62,18 +62,27 @@ function fn_updateRange(quill){
 function fn_showEmojiPalatte(quill) {
   let ele_emoji_area = document.createElement('div');
   let toolbar_container = document.querySelector('.ql-toolbar');
+  let bodyContainer = document.querySelector('body');
   let range = quill.getSelection();
-  const atSignBounds = quill.getBounds(range.index);
+  const cursorPos = quill.getBounds(range.index);
+  const quillPos = toolbar_container.getBoundingClientRect();
+  const EMOJI_CONTAINER_HEIGHT = 258; //palette height
+  const displayPosTop = bodyContainer.getBoundingClientRect().height - (quillPos.height + quillPos.top + cursorPos.top) < EMOJI_CONTAINER_HEIGHT 
+    ? true
+    : false;
 
-  quill.container.appendChild(ele_emoji_area);
-  let paletteMaxPos = atSignBounds.left + 250;//palette max width is 250
+  bodyContainer.appendChild(ele_emoji_area);
+  let paletteMaxPos = cursorPos.left + 250;//palette max width is 250
   ele_emoji_area.id = 'emoji-palette';
-  ele_emoji_area.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
+  ele_emoji_area.style.top = displayPosTop 
+    ? quillPos.top - EMOJI_CONTAINER_HEIGHT + cursorPos.top + cursorPos.height + "px"
+    : 10 + quillPos.top + cursorPos.height + cursorPos.top + quillPos.height + "px";
+
   if (paletteMaxPos > quill.container.offsetWidth) {
-    ele_emoji_area.style.left = (atSignBounds.left - 250)+ "px";
+    ele_emoji_area.style.left = (cursorPos.left - 250)+ "px";
   }
   else{
-    ele_emoji_area.style.left = atSignBounds.left + "px";
+    ele_emoji_area.style.left = cursorPos.left + "px";
   }
 
 
