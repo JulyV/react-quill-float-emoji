@@ -74,17 +74,10 @@ function fn_showEmojiPalatte(quill) {
   bodyContainer.appendChild(ele_emoji_area);
   let paletteMaxPos = cursorPos.left + 250;//palette max width is 250
   ele_emoji_area.id = 'emoji-palette';
+  ele_emoji_area.style.left = quillPos.left + cursorPos.left + "px";
   ele_emoji_area.style.top = displayPosTop 
     ? quillPos.top - EMOJI_CONTAINER_HEIGHT + cursorPos.top + cursorPos.height + "px"
     : 10 + quillPos.top + cursorPos.height + cursorPos.top + quillPos.height + "px";
-
-  if (paletteMaxPos > quill.container.offsetWidth) {
-    ele_emoji_area.style.left = (cursorPos.left - 250)+ "px";
-  }
-  else{
-    ele_emoji_area.style.left = cursorPos.left + "px";
-  }
-
 
   let tabToolbar = document.createElement('div');
   tabToolbar.id="tab-toolbar";
