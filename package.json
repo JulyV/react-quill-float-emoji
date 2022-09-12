@@ -1,6 +1,6 @@
 {
   "name": "react-quill-float-emoji",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "description": "React Quill Extension for Emoji Selection",
   "main": "dist/quill-emoji.js",
   "devDependencies": {

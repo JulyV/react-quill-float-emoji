@@ -8,7 +8,6 @@ const Module = Quill.import('core/module');
 class ToolbarEmoji extends Module {
   constructor(quill, options) {
     super(quill, options);
-
     this.quill = quill;
     this.toolbar = quill.getModule('toolbar');
     if (typeof this.toolbar !== 'undefined')
@@ -21,7 +20,6 @@ class ToolbarEmoji extends Module {
       });
     }
   }
-
   checkPalatteExist() {
     let quill = this.quill;
     fn_checkDialogOpen(quill);
@@ -61,7 +59,7 @@ function fn_updateRange(quill){
 
 function fn_showEmojiPalatte(quill) {
   let ele_emoji_area = document.createElement('div');
-  let toolbar_container = document.querySelector('.ql-toolbar');
+  let toolbar_container = quill.container;
   let bodyContainer = document.querySelector('body');
   let range = quill.getSelection();
   const cursorPos = quill.getBounds(range.index);
@@ -76,8 +74,8 @@ function fn_showEmojiPalatte(quill) {
   ele_emoji_area.id = 'emoji-palette';
   ele_emoji_area.style.left = quillPos.left + cursorPos.left + "px";
   ele_emoji_area.style.top = displayPosTop 
-    ? quillPos.top - EMOJI_CONTAINER_HEIGHT + cursorPos.top + cursorPos.height + "px"
-    : 10 + quillPos.top + cursorPos.height + cursorPos.top + quillPos.height + "px";
+    ? quillPos.top - EMOJI_CONTAINER_HEIGHT + cursorPos.top + cursorPos.height - 30 + "px"
+    : 10 + quillPos.top + cursorPos.height + cursorPos.top + "px";
 
   let tabToolbar = document.createElement('div');
   tabToolbar.id="tab-toolbar";
